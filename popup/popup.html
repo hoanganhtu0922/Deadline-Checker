@@ -3,38 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        body { width: 350px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 15px; background-color: #f4f7f6; }
-        h2 { color: #d32f2f; font-size: 18px; margin-top: 0; border-bottom: 2px solid #d32f2f; padding-bottom: 5px; }
-        .deadline-item { background: white; border-radius: 8px; padding: 10px; margin-bottom: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .name { font-weight: bold; color: #333; display: block; margin-bottom: 5px; }
-        .time { font-size: 12px; color: #666; }
-        .urgent { color: #e91e63; font-weight: bold; }
-        #refresh-btn { width: 100%; padding: 8px; background: #2196F3; color: white; border: none; border-radius: 4px; cursor: pointer; }
-        .deadline-item { 
-        display: flex; 
-        align-items: flex-start; 
-        gap: 10px; 
-        background: white; 
-        border-radius: 8px; 
-        padding: 10px; 
-        margin-bottom: 10px; 
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
-    }
-    .checkbox-container { margin-top: 3px; }
-    .info-container { flex-grow: 1; }
-    
-    /* Hiệu ứng khi đã tick */
-    .done .name { 
-        text-decoration: line-through; 
-        color: #888; 
-    }
-    .done { opacity: 0.7; background-color: #e0e0e0; }
+        body { width: 350px; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 15px; background-color: #f8f9fa; }
+        h2 { color: #1976d2; font-size: 1.2rem; margin-bottom: 15px; display: flex; justify-content: space-between; }
+        
+        /* Container cho danh sách */
+        #deadline-list { display: flex; flex-direction: column; gap: 10px; }
+
+        /* Từng item deadline */
+        .deadline-item {
+            display: flex; align-items: center; background: white;
+            padding: 12px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        /* Checkbox */
+        .checkbox-input { width: 18px; height: 18px; cursor: pointer; margin-right: 12px; }
+
+        /* Nội dung chữ */
+        .content { flex-grow: 1; }
+        .name { font-weight: 600; display: block; color: #333; margin-bottom: 2px; }
+        .time { font-size: 11px; color: #777; }
+
+        /* Hiệu ứng khi tick xong */
+        .deadline-item.completed { background-color: #e8f5e9; opacity: 0.6; }
+        .deadline-item.completed .name { text-decoration: line-through; color: #666; }
+
+        #refresh-btn { 
+            margin-top: 15px; width: 100%; padding: 10px; 
+            background: #1976d2; color: white; border: none; 
+            border-radius: 5px; cursor: pointer; font-weight: bold;
+        }
     </style>
 </head>
 <body>
-    <h2>📅 Moodle Deadlines</h2>
-    <div id="deadline-list">Đang tải dữ liệu...</div>
-    <button id="refresh-btn">Cập nhật ngay</button>
+    <h2>
+        <span>📅 My Deadlines</span>
+    </h2>
+    
+    <div id="deadline-list">
+        <p style="text-align:center;">Đang kiểm tra dữ liệu...</p>
+    </div>
+
+    <button id="refresh-btn">Cập nhật từ Moodle</button>
+
     <script src="popup.js"></script>
 </body>
 </html>
