@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { width: 350px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 15px; background-color: #f4f7f6; }
+        h2 { color: #d32f2f; font-size: 18px; margin-top: 0; border-bottom: 2px solid #d32f2f; padding-bottom: 5px; }
+        .deadline-item { background: white; border-radius: 8px; padding: 10px; margin-bottom: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .name { font-weight: bold; color: #333; display: block; margin-bottom: 5px; }
+        .time { font-size: 12px; color: #666; }
+        .urgent { color: #e91e63; font-weight: bold; }
+        #refresh-btn { width: 100%; padding: 8px; background: #2196F3; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .deadline-item { 
+        display: flex; 
+        align-items: flex-start; 
+        gap: 10px; 
+        background: white; 
+        border-radius: 8px; 
+        padding: 10px; 
+        margin-bottom: 10px; 
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+    }
+    .checkbox-container { margin-top: 3px; }
+    .info-container { flex-grow: 1; }
+    
+    /* Hiệu ứng khi đã tick */
+    .done .name { 
+        text-decoration: line-through; 
+        color: #888; 
+    }
+    .done { opacity: 0.7; background-color: #e0e0e0; }
+    </style>
+</head>
+<body>
+    <h2>📅 Moodle Deadlines</h2>
+    <div id="deadline-list">Đang tải dữ liệu...</div>
+    <button id="refresh-btn">Cập nhật ngay</button>
+    <script src="popup.js"></script>
+</body>
+</html>

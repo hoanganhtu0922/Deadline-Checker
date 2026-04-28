@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Moodle Deadline Checker",
+  "version": "1.0",
+  "permissions": [
+    "storage",       
+    "alarms",        
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://courses.ctda.hcmus.edu.vn/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup/popup.html"
+  }
+}
