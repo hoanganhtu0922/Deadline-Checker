@@ -1,4 +1,3 @@
-const MOODLE_ICAL_URL = "https://courses.ctda.hcmus.edu.vn/calendar/export_execute.php?userid=6532&authtoken=d7e74e90882e52a45a719d762b3f0aeacf2fbcf8&preset_what=all&preset_time=monthnow";
 
 chrome.runtime.onInstalled.addListener(() => {
     chrome.alarms.create("checkDeadline", { periodInMinutes: 30 });
@@ -11,7 +10,16 @@ chrome.alarms.onAlarm.addListener((alarm) => {
 
 async function fetchAndCheck() {
     try {
-        const response = await fetch(MOODLE_ICAL_URL);
+        // Lấy URL từ storage
+        const result = await chrome.storage.local.get(['moodleUrl']);
+        const moodleUrl = result.moodleUrl;
+
+        if (!moodleUrl) {
+            console.log("Chưa có URL Moodle, chờ người dùng nhập...");
+            return; 
+        }
+
+        const response = await fetch(moodleUrl);
         const data = await response.text();
         const events = parseICS(data);
         const now = new Date();
@@ -22,14 +30,12 @@ async function fetchAndCheck() {
 
         chrome.storage.local.set({ deadlineList: sortedEvents });
 
-        chrome.storage.local.get(['doneIds'], (result) => {
-            const doneIds = result.doneIds || [];
+        chrome.storage.local.get(['doneIds'], (res) => {
+            const doneIds = res.doneIds || [];
             sortedEvents.forEach(event => {
                 const diff = event.start - now;
                 const hoursLeft = diff / (1000 * 60 * 60);
-
-                // Dùng event.id (chính là UID từ Moodle)
-                if (hoursLeft > 0 && hoursLeft <= 24 && !doneIds.includes(event.id)) {
+                if (hoursLeft <= 24 && !doneIds.includes(event.id)) {
                     showNotification(event.id, event.summary, Math.round(hoursLeft));
                 }
             });
@@ -70,7 +76,7 @@ function showNotification(id, title, hours) {
         type: "basic",
         iconUrl: "icons/icon128.png",
         title: "⚠️ DEADLINE CẬN KỀ!",
-        message: `Môn: ${title}\nCòn ${hours} tiếng!`,
+        message: `Nội Dung: ${title}\nCòn ${hours} tiếng!`,
         priority: 2
     });
 }

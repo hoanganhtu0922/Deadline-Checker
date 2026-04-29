@@ -12,6 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+document.getElementById('open-options').addEventListener('click', () => {
+    chrome.tabs.create({
+        url: chrome.runtime.getURL("/options/options.html")
+    });
+});
+
 function renderList() {
     const container = document.getElementById('deadline-list');
     chrome.storage.local.get(['deadlineList', 'doneIds'], (data) => {
@@ -59,3 +65,4 @@ function handleCheck(id, status) {
         chrome.storage.local.set({ doneIds: doneIds });
     });
 }
+

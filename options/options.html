@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cài đặt Moodle Extension</title>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; max-width: 500px; }
+        input { width: 100%; padding: 8px; margin: 10px 0; box-sizing: border-box; }
+        button { padding: 10px 20px; background: #2196F3; color: white; border: none; cursor: pointer; border-radius: 4px; }
+        .status { color: green; margin-top: 10px; font-weight: bold; }
+        code { background: #eee; padding: 2px 5px; }
+    </style>
+</head>
+<body>
+    <h2>Cấu hình Moodle Link</h2>
+    <p>Dán link <b>iCal URL</b> từ Moodle của bạn vào đây:</p>
+    <input type="text" id="url-input" placeholder="https://courses.ctda.hcmus.edu.vn/...">
+    <button id="save-btn">Lưu cài đặt</button>
+    <div id="status" class="status"></div>
+
+    <hr>
+    <p><small>Hướng dẫn: Moodle > Calendar > Export Calendar > All events + 60 days > Get calendar URL.</small></p>
+    <script src="options.js"></script>
+</body>
+</html>
