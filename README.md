@@ -23,15 +23,23 @@ Since this extension is in development, you need to load it manually into Google
 3. Click the **Load unpacked** button.
 4. Select the folder where you saved this project.
 
-## Project Structure 
+### 3. Setup & Usage
+#### Step 1: Get your Moodle iCal Link
+Log in to your Moodle account.
 
-```text
-├── manifest.json       # Extension configuration
-├── background.js       # Background service worker (data fetching)
-├── popup/
-│   ├── popup.html      # UI for the extension popup
-│   └── popup.js        # Logic for the checklist and UI updates
-├── scripts/
-│   ├── ical.min.js     # Library to parse .ics data
-│   └── content.js      # Script to inject alerts into websites
-└── icons/              # Extension icons
+Go to the Calendar dashboard.
+
+Click the Export calendar button (usually at the bottom).
+
+Select All events and Recent and next 60 days.
+
+Click Get calendar URL and copy the link.
+
+#### Step 2: Configure the Extension
+Click the Extension icon (puzzle piece) in your Chrome toolbar and pin Moodle Deadline Checker.
+
+Click our extension icon and select ⚙️ Cài đặt link iCal (or right-click the icon > Options).
+
+Paste your URL into the box and click Save.
+
+You're all set! The extension will now start tracking your deadlines.
